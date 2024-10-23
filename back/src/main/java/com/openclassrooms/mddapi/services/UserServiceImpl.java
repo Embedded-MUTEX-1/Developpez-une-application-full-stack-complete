@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.services;
 
+import com.openclassrooms.mddapi.dto.RegisterDTO;
 import com.openclassrooms.mddapi.dto.UserDTO;
 import com.openclassrooms.mddapi.exceptions.EntityAlreadyExistsException;
 import com.openclassrooms.mddapi.models.User;
@@ -21,11 +22,12 @@ public class UserServiceImpl implements UserService {
         this.modelMapper = new ModelMapper();
     }
 
-    public void registerUser(UserDTO userDTO) throws EntityAlreadyExistsException {
-        if (userRepository.existsByEmail(userDTO.getEmail()))
+    @Override
+    public void registerUser(RegisterDTO registerDTO) throws EntityAlreadyExistsException {
+        if (userRepository.existsByEmail(registerDTO.getEmail()))
             throw new EntityAlreadyExistsException();
 
-        userRepository.save(modelMapper.map(userDTO, User.class));
+        userRepository.save(modelMapper.map(registerDTO, User.class));
     }
 
     public UserDTO getUserById(long id) {
@@ -33,12 +35,13 @@ public class UserServiceImpl implements UserService {
         return modelMapper.map(user, UserDTO.class);
     }
 
-    public void updateUser(UserDTO userDTO) {
-        User user = userRepository.findById(userDTO.getId()).orElseThrow();
+    @Override
+    public void updateUser(Long userId, RegisterDTO registerDTO) {
+        User user = userRepository.findById(userId).orElseThrow();
 
-        user.setEmail(userDTO.getEmail());
-        user.setUsername(userDTO.getUsername());
-        user.setPassword(userDTO.getPassword());
+        user.setEmail(registerDTO.getEmail());
+        user.setUsername(registerDTO.getUsername());
+        user.setPassword(registerDTO.getPassword());
 
         userRepository.save(user);
     }
