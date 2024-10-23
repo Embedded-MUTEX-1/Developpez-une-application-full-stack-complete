@@ -2,6 +2,7 @@ package com.openclassrooms.mddapi.services;
 
 import com.openclassrooms.mddapi.dto.ArticleDTO;
 import com.openclassrooms.mddapi.dto.NewArticleDTO;
+import com.openclassrooms.mddapi.dto.UserDTO;
 import com.openclassrooms.mddapi.models.Article;
 import com.openclassrooms.mddapi.models.Theme;
 import com.openclassrooms.mddapi.models.User;
@@ -9,6 +10,7 @@ import com.openclassrooms.mddapi.repositories.ArticleRepository;
 import com.openclassrooms.mddapi.repositories.ThemeRepository;
 import com.openclassrooms.mddapi.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +30,9 @@ public class ArticleServiceImpl implements ArticleService {
         this.userRepository = userRepository;
         this.articleRepository = articleRepository;
         this.themeRepository = themeRepository;
-        modelMapper = new ModelMapper();
+        this.modelMapper = new ModelMapper();
+        TypeMap<Article, ArticleDTO> typeMap = this.modelMapper.createTypeMap(Article.class, ArticleDTO.class);
+        typeMap.addMappings(mapper -> mapper.map(Article::getComments, ArticleDTO::setComments));
     }
 
     @Override

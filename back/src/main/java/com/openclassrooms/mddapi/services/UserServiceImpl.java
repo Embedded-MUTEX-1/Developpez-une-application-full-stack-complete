@@ -6,6 +6,7 @@ import com.openclassrooms.mddapi.exceptions.EntityAlreadyExistsException;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,8 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
         this.modelMapper = new ModelMapper();
+        TypeMap<User, UserDTO> typeMap = this.modelMapper.createTypeMap(User.class, UserDTO.class);
+        typeMap.addMappings(mapper -> mapper.map(User::getThemes, UserDTO::setThemes));
     }
 
     @Override
