@@ -7,14 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewArticleDTO {
+public class UpdateUserDTO {
     private Long id;
-
-    private String title;
-
-    private String content;
-
-    private Long userId;
-
-    private Long themeId;
+    private String email;
+    private String username;
+    private String password;
 }

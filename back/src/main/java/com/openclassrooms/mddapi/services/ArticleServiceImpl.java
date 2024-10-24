@@ -1,9 +1,10 @@
 package com.openclassrooms.mddapi.services;
 
 import com.openclassrooms.mddapi.dto.ArticleDTO;
-import com.openclassrooms.mddapi.dto.NewArticleDTO;
-import com.openclassrooms.mddapi.dto.UserDTO;
+import com.openclassrooms.mddapi.dto.CommentDTO;
+import com.openclassrooms.mddapi.dto.PostArticleDTO;
 import com.openclassrooms.mddapi.models.Article;
+import com.openclassrooms.mddapi.models.Comment;
 import com.openclassrooms.mddapi.models.Theme;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.repositories.ArticleRepository;
@@ -31,13 +32,20 @@ public class ArticleServiceImpl implements ArticleService {
         this.articleRepository = articleRepository;
         this.themeRepository = themeRepository;
         this.modelMapper = new ModelMapper();
-        TypeMap<Article, ArticleDTO> typeMap = this.modelMapper.createTypeMap(Article.class, ArticleDTO.class);
-        typeMap.addMappings(mapper -> mapper.map(Article::getComments, ArticleDTO::setComments));
+
+        TypeMap<Article, ArticleDTO> typeMapArticle = this.modelMapper.createTypeMap(Article.class, ArticleDTO.class);
+        TypeMap<Comment, CommentDTO> typeMapComment = this.modelMapper.createTypeMap(Comment.class, CommentDTO.class);
+
+
+        typeMapArticle.addMappings(mapper -> mapper.map(src -> src.getUser().getUsername(), ArticleDTO::setAuthor));
+        typeMapArticle.addMappings(mapper -> mapper.map(src -> src.getTheme().getName(), ArticleDTO::setTheme));
+
+        typeMapComment.addMappings(mapper -> mapper.map(src -> src.getUser().getUsername(), CommentDTO::setComment));
     }
 
     @Override
     public List<ArticleDTO> getAllArticles() {
-        return modelMapper.map(userRepository.findAll(), new TypeToken<List<NewArticleDTO>>(){}.getType());
+        return modelMapper.map(userRepository.findAll(), new TypeToken<List<ArticleDTO>>(){}.getType());
     }
 
     @Override
@@ -47,7 +55,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void addArticle(NewArticleDTO articleDTO) {
+    public void addArticle(PostArticleDTO articleDTO) {
         Article article = new Article();
 
         article.setTitle(articleDTO.getTitle());

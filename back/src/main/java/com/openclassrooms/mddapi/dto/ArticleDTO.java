@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -17,10 +18,12 @@ public class ArticleDTO {
     private String title;
 
     private String content;
+    
+    private Date createdAt;
 
-    private User user;
+    private String author;
 
-    private Theme theme;
+    private String theme;
 
     private List<CommentDTO> comments;
 }

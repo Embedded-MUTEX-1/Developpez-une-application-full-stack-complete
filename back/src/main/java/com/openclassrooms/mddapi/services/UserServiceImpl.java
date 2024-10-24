@@ -1,6 +1,7 @@
 package com.openclassrooms.mddapi.services;
 
 import com.openclassrooms.mddapi.dto.RegisterDTO;
+import com.openclassrooms.mddapi.dto.UpdateUserDTO;
 import com.openclassrooms.mddapi.dto.UserDTO;
 import com.openclassrooms.mddapi.exceptions.EntityAlreadyExistsException;
 import com.openclassrooms.mddapi.models.User;
@@ -9,8 +10,6 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.EntityNotFoundException;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -39,12 +38,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(Long userId, RegisterDTO registerDTO) {
-        User user = userRepository.findById(userId).orElseThrow();
+    public void updateUser(UpdateUserDTO update) {
+        User user = userRepository.findById(update.getId()).orElseThrow();
 
-        user.setEmail(registerDTO.getEmail());
-        user.setUsername(registerDTO.getUsername());
-        user.setPassword(registerDTO.getPassword());
+        user.setEmail(update.getEmail());
+        user.setUsername(update.getUsername());
+        user.setPassword(update.getPassword());
 
         userRepository.save(user);
     }
