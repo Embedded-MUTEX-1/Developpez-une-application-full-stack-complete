@@ -6,10 +6,10 @@ import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.repositories.ThemeRepository;
 import com.openclassrooms.mddapi.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -49,6 +49,6 @@ public class ThemeServiceImpl implements ThemeService {
 
     @Override
     public List<ThemeDTO> getThemes() {
-        return List.of();
+        return modelMapper.map(themeRepository.findAll(), new TypeToken<List<ThemeDTO>>(){}.getType());
     }
 }
