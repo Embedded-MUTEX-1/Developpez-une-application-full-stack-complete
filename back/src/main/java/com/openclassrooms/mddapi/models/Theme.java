@@ -19,10 +19,4 @@ public class Theme {
     private Long id;
 
     private String name;
-
-    @ManyToMany
-    private List<User> users;
-
-    @OneToMany
-    private List<Article> articles;
 }

@@ -29,6 +29,6 @@ public class Article {
     @ManyToOne(fetch = FetchType.EAGER)
     private Theme theme;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
     private List<Comment> comments;
 }

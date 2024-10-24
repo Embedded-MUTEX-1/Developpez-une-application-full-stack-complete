@@ -35,7 +35,7 @@ public class ThemeController {
         return new HttpMessageDTO("Subscribe successfully");
     }
 
-    @PatchMapping("/api/theme/{id}/subscribe/{userId}")
+    @PatchMapping("/api/theme/{id}/unsubscribe/{userId}")
     public HttpMessageDTO unsubscribeTheme(@PathVariable Long id, @PathVariable Long userId) {
         themeService.unsubscribe(id, userId);
         return new HttpMessageDTO("Unsubscribe successfully");
