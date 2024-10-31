@@ -1,6 +1,7 @@
 package com.openclassrooms.mddapi.services;
 
 import com.openclassrooms.mddapi.dto.ArticleDTO;
+import com.openclassrooms.mddapi.dto.ArticleDetailsDTO;
 import com.openclassrooms.mddapi.dto.CommentDTO;
 import com.openclassrooms.mddapi.dto.PostArticleDTO;
 import com.openclassrooms.mddapi.models.Article;
@@ -34,24 +35,26 @@ public class ArticleServiceImpl implements ArticleService {
         this.modelMapper = new ModelMapper();
 
         TypeMap<Article, ArticleDTO> typeMapArticle = this.modelMapper.createTypeMap(Article.class, ArticleDTO.class);
+        TypeMap<Article, ArticleDetailsDTO> typeMapArticleDetails = this.modelMapper.createTypeMap(Article.class, ArticleDetailsDTO.class);
         TypeMap<Comment, CommentDTO> typeMapComment = this.modelMapper.createTypeMap(Comment.class, CommentDTO.class);
 
 
         typeMapArticle.addMappings(mapper -> mapper.map(src -> src.getUser().getUsername(), ArticleDTO::setAuthor));
-        typeMapArticle.addMappings(mapper -> mapper.map(src -> src.getTheme().getName(), ArticleDTO::setTheme));
+        typeMapArticleDetails.addMappings(mapper -> mapper.map(src -> src.getUser().getUsername(), ArticleDetailsDTO::setAuthor));
+        typeMapArticleDetails.addMappings(mapper -> mapper.map(src -> src.getTheme().getName(), ArticleDetailsDTO::setTheme));
 
-        typeMapComment.addMappings(mapper -> mapper.map(src -> src.getUser().getUsername(), CommentDTO::setComment));
+        typeMapComment.addMappings(mapper -> mapper.map(src -> src.getUser().getUsername(), CommentDTO::setUsername));
     }
 
     @Override
     public List<ArticleDTO> getAllArticles() {
-        return modelMapper.map(userRepository.findAll(), new TypeToken<List<ArticleDTO>>(){}.getType());
+        return modelMapper.map(articleRepository.findAll(), new TypeToken<List<ArticleDTO>>(){}.getType());
     }
 
     @Override
-    public ArticleDTO getArticleById(Long id) {
+    public ArticleDetailsDTO getArticleById(Long id) {
         Article article = articleRepository.findById(id).orElseThrow();
-        return modelMapper.map(article, ArticleDTO.class);
+        return modelMapper.map(article, ArticleDetailsDTO.class);
     }
 
     @Override

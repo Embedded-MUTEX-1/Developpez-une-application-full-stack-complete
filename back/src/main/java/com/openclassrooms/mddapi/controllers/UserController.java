@@ -36,7 +36,7 @@ public class UserController {
     }
 
     // TODO get user with security context '@PutMapping("/me")'
-    @PutMapping("/")
+    @PutMapping("")
     public HttpMessageDTO updateUser(@RequestBody UpdateUserDTO update) {
         userService.updateUser(update);
         return new HttpMessageDTO("User updated successfully");

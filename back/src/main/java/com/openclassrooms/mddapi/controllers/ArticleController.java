@@ -1,6 +1,7 @@
 package com.openclassrooms.mddapi.controllers;
 
 import com.openclassrooms.mddapi.dto.ArticleDTO;
+import com.openclassrooms.mddapi.dto.ArticleDetailsDTO;
 import com.openclassrooms.mddapi.dto.HttpMessageDTO;
 import com.openclassrooms.mddapi.dto.PostArticleDTO;
 import com.openclassrooms.mddapi.services.ArticleService;
@@ -25,7 +26,7 @@ public class ArticleController {
     }
 
     @GetMapping("/{id}")
-    public ArticleDTO getArticleById(@PathVariable final Long id) {
+    public ArticleDetailsDTO getArticleById(@PathVariable final Long id) {
         return articleService.getArticleById(id);
     }
 
