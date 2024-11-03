@@ -1,0 +1,34 @@
+<app-nav-header></app-nav-header>
+<div class="vh-100">
+    <a routerLink="/" class="align-self-center"><img src="assets/arrow.png" alt="Back button" class="mt-2 ms-3"></a>
+
+    <h2 class="text-center">Créer un article</h2>
+
+    <form #loginForm="ngForm" (ngSubmit)="submitForm()" class="d-flex flex-column gap-4">
+        <div class="form-group d-flex flex-column align-items-center">
+            <select class="form-control" name="themeId" [(ngModel)]="newArticleData.themeId" placeholder="Thème de l'article" required>
+                <option value="1">Theme1</option>
+                <option value="2">Theme2</option>
+                <option value="3">Theme3</option>
+                <option value="4">Theme4</option>
+                <option value="5">Theme5</option>
+            </select>
+        </div>
+
+        <div class="form-group d-flex flex-column align-items-center">
+            <input type="text" class="form-control" name="title" [(ngModel)]="newArticleData.title" minlength="5" placeholder="Titre de l'article" required>
+            <span *ngIf="loginForm.touched && loginForm.invalid" class="text-danger">
+                Champ invalide.
+            </span>
+        </div>
+
+        <div class="form-group d-flex flex-column align-items-center">
+            <textarea class="form-control" name="content" [(ngModel)]="newArticleData.content" minlength="20" placeholder="Contenu de l'article" required></textarea>
+            <span *ngIf="loginForm.touched && loginForm.invalid" class="text-danger">
+                Champ invalide.
+            </span>
+        </div>
+
+        <button type="submit" class="btn align-self-center">Créer</button>
+    </form>
+</div>

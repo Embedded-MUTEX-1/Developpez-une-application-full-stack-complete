@@ -1,0 +1,27 @@
+button {
+    width: 150px;
+    background-color: blueviolet;
+    color: white;
+}
+
+input {
+    width: 300px;
+
+    @media (min-width: 567px) {
+        width: 50%;
+    }
+}
+
+#logout {
+    background-color: transparent;
+    color: red;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#line {
+    background-color: black;
+    height: 1px;
+    margin-left: 50px;
+    margin-right: 50px;
+}

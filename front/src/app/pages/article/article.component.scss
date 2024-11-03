@@ -1,0 +1,54 @@
+a img {
+    width: 30px;
+}
+
+#detail {
+    padding-left:  20px;
+    padding-right: 20px;
+    
+    @media (min-width: 576px) {
+        padding-left:  unset;
+        padding-right: unset;
+        width: 60%;
+    }
+}
+
+.article-detail {
+    width: 150px;
+}
+
+#content {
+    max-height: 400px;
+    width: 100%;
+    word-break: break-all;
+    overflow-y: auto;
+}
+
+#line {
+    background-color: black;
+    height: 1px;
+}
+
+#comments {
+    height: 200px;
+    overflow: auto;
+}
+
+button {
+    width: fit-content;
+    position: absolute;
+    right: 0px;
+    top: 39%;
+
+    @media (min-width: 576px) {
+        right: -90px;
+    }
+}
+
+button img {
+    width: 50px;
+}
+
+textarea {
+    height: 100px;
+}

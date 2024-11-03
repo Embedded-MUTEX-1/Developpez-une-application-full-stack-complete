@@ -10,9 +10,17 @@ import { NavHeaderComponent } from './components/nav-header/nav-header.component
 import { HeaderComponent } from './components/header/header.component';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './pages/register/register.component';
+import { ArticlesComponent } from './pages/articles/articles.component';
+import { ArticleCardComponent } from './components/article-card/article-card.component';
+import { ThemesComponent } from './pages/themes/themes.component';
+import { ThemeCardComponent } from './components/theme-card/theme-card.component';
+import { ArticleComponent } from './pages/article/article.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { NewArticleComponent } from './pages/new-article/new-article.component';
+import { AccountComponent } from './pages/account/account.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent, NavHeaderComponent, HeaderComponent, RegisterComponent],
+  declarations: [AppComponent, HomeComponent, LoginComponent, NavHeaderComponent, HeaderComponent, RegisterComponent, ArticlesComponent, ArticleCardComponent, ThemesComponent, ThemeCardComponent, ArticleComponent, CommentComponent, NewArticleComponent, AccountComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

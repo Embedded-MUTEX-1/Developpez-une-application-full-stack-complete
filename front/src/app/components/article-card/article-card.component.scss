@@ -1,0 +1,18 @@
+#card {
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(243, 243, 243);
+    border-radius: 30px;
+}
+
+h3 {
+    font-weight: bold;
+}
+
+#content {
+    height: 75px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}   

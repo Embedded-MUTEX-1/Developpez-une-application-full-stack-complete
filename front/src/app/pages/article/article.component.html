@@ -1,0 +1,52 @@
+<app-nav-header></app-nav-header>
+<div class="v-100 mt-2 px-3">
+    <div class="d-flex flex-row gap-3 mb-2">
+        <a routerLink="/" class="align-self-center"><img src="assets/arrow.png" alt="Back button"></a>
+        <h1 class="m-0">Titre de l'article</h1>
+    </div>
+
+    <div id="detail" class="m-auto h-100">
+        <div class="d-flex flex-wrap my-2">
+            <p class="article-detail">Date:</p>
+            <p class="article-detail">Auteur:</p>
+            <p class="article-detail">Thème:</p>
+        </div>
+
+        <p id="content">sdvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvsdsdvfbnihsdbvhuijbdqsv
+            sibvidsbiyhfvdsvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+            sibvidsbiyhfvdsvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+            sibvidsbiyhfvdsvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+            sibvidsbiyhfvdsvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+            sibvidsbiyhfvdsvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+            sibvidsbiyhfvdsvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+            sibvidsbiyhfvdsvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+            sibvidsbiyhfvdsvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+            sibvidsbiyhfvdsvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+            sibvidsbiyhfvdsvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+            sibvidsbiyhfvdsvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+            sibvidsbiyhfvdsvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+            vvvvvvvvvvvvvvvvvvvvvvvv</p>
+
+        <div id="line" class="my-4"></div>
+
+        <p class="mb-4">Commentaires</p>
+
+        <div id="comments">
+            <app-comment></app-comment>
+            <app-comment></app-comment>
+            <app-comment></app-comment>
+            <app-comment></app-comment>
+            <app-comment></app-comment>
+            <app-comment></app-comment>
+        </div>
+
+        <form #commentForm="ngForm" (ngSubmit)="submitComment()" class="d-flex flex-column gap-2 position-relative">
+            <label for="email">Comment</label>
+            <textarea class="form-control" id="email" name="email" [(ngModel)]="commentData.comment" required></textarea>
+            <div *ngIf="commentForm.touched && commentForm.invalid" class="text-danger">
+                Champ invalide.
+            </div>
+            <button type="submit" class="btn align-self-center"><img src="assets/send.png" alt="Post comment button"></button>
+        </form>
+    </div>
+</div>

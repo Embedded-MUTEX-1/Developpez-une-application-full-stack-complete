@@ -1,0 +1,21 @@
+button {
+    width: 100px;
+    background-color: blueviolet;
+    color: white;
+}
+
+a img {
+    width: 30px;
+}
+
+select, input, textarea {
+    width: 300px;
+
+    @media (min-width: 567px) {
+        width: 50%;
+    }
+}
+
+textarea {
+    height: 400px;
+}
