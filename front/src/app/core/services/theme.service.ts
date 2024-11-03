@@ -13,14 +13,14 @@ export class ThemeService {
   constructor(private http: HttpClient) {}
 
   getAllThemes() {
-    return this.http.get<Theme>(this.themePath);
+    return this.http.get<Theme[]>(this.themePath);
   }
 
-  subscribe(themeId: Number, userId: Number) {
+  subscribe(themeId: number, userId: number) {
     return this.http.patch<HttpMessage>(`${this.themePath}/${themeId}/subscribe/${userId}`, null);
   }
 
-  unsubscribe(themeId: Number, userId: Number) {
+  unsubscribe(themeId: number, userId: number) {
     return this.http.patch<HttpMessage>(`${this.themePath}/${themeId}/unsubscribe/${userId}`, null);
   }
 }

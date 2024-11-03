@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment'
 import { Register } from '../models/register.model';
 import { HttpMessage } from '../models/http-message.model';
 import { UpdtadeUser } from '../models/update-user.model';
+import { SessionService } from './session.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +19,8 @@ export class UserService {
     return this.http.post<HttpMessage>(this.userPath, newUser);
   }
 
-  getMe(userId: Number) {
-    return this.http.get(`${this.userPath}/${userId}`);
+  getMe(userId: number) {
+    return this.http.get<User>(`${this.userPath}/${userId}`);
   }
 
   updateUser(user: UpdtadeUser) {

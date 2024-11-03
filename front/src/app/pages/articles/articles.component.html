@@ -2,7 +2,7 @@
 <div class="container-fluid vh-100">
     <div class="row my-3">
         <div class="col-12 col-sm-6 d-flex flex-row justify-content-center justify-content-sm-start">
-            <button class="btn" id="create">Créer un article</button>
+            <button (click)="create()" class="btn" id="create">Créer un article</button>
         </div>
 
         <div class="col-12 col-sm-6 d-flex flex-row-reverse justify-content-center justify-content-sm-start">
@@ -11,13 +11,6 @@
     </div>
 
     <div class="row">
-        <app-article-card class="col-12 col-sm-6"></app-article-card>
-        <app-article-card class="col-12 col-sm-6"></app-article-card>
-        <app-article-card class="col-12 col-sm-6"></app-article-card>
-        <app-article-card class="col-12 col-sm-6"></app-article-card>
-        <app-article-card class="col-12 col-sm-6"></app-article-card>
-        <app-article-card class="col-12 col-sm-6"></app-article-card>
-        <app-article-card class="col-12 col-sm-6"></app-article-card>
-        <app-article-card class="col-12 col-sm-6"></app-article-card>
+        <app-article-card *ngFor="let article of articles" [article]="article" class="col-12 col-sm-6"></app-article-card>
     </div>
 </div>

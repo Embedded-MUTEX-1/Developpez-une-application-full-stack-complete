@@ -1,28 +1,35 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../models/user.model';
-import { environment } from '../../../environments/environment'
-import { Register } from '../models/register.model';
-import { HttpMessage } from '../models/http-message.model';
-import { UpdtadeUser } from '../models/update-user.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
-  private userPath = environment.apiUrl + 'users';
+export class SessionService {
+  
+  private userId: number | undefined = 0;
+  private token: string | null;
 
-  constructor(private http: HttpClient) {}
+  constructor() {
+    const id = localStorage.getItem('userId');
+    if (id != null) this.userId = parseInt(id)
 
-  register(newUser: Register) {
-    return this.http.post<HttpMessage>(this.userPath, newUser);
+    this.token = localStorage.getItem('token');
   }
 
-  getMe(userId: Number) {
-    return this.http.get(`${this.userPath}/${userId}`);
+  setUserId(userId: number) {
+    localStorage.setItem('userId', userId.toString())
+    this.userId = userId;
   }
 
-  updateUser(user: UpdtadeUser) {
-    return this.http.put<HttpMessage>(this.userPath, user);
+  getUserId() {
+    return this.userId!;
+  }
+
+  setToken(token: string) {
+    localStorage.setItem('token', token)
+    this.token = token;
+  }
+
+  getToken() {
+    return this.token;
   }
 }

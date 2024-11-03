@@ -31,12 +31,6 @@
     <h2 class="mb-4 text-center">Abonnements</h2>
 
     <div class="row">
-        <app-theme-card class="col-12 col-sm-6"></app-theme-card>
-        <app-theme-card class="col-12 col-sm-6"></app-theme-card>
-        <app-theme-card class="col-12 col-sm-6"></app-theme-card>
-        <app-theme-card class="col-12 col-sm-6"></app-theme-card>
-        <app-theme-card class="col-12 col-sm-6"></app-theme-card>
-        <app-theme-card class="col-12 col-sm-6"></app-theme-card>
-        <app-theme-card class="col-12 col-sm-6"></app-theme-card>
+        <app-theme-card *ngFor="let theme of themes" [theme]="theme" [mode]="false" class="col-12 col-sm-6"></app-theme-card>
     </div>
 </div>

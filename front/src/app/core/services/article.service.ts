@@ -18,11 +18,11 @@ export class ArticleService {
     return this.http.get<Article[]>(this.articlePath);
   }
 
-  getArticle(id: Number) {
-    return this.http.get<ArticleDetails[]>(`${this.articlePath}/${id}`);
+  getArticle(id: number) {
+    return this.http.get<ArticleDetails>(`${this.articlePath}/${id}`);
   }
 
-  crateArticle(newArticle: PostArticle) {
+  createArticle(newArticle: PostArticle) {
     return this.http.post<HttpMessage>(this.articlePath, newArticle);
   }
 }

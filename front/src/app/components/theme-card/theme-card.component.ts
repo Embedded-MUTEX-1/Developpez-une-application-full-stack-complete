@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Theme } from 'src/app/core/models/theme.model';
+import { SessionService } from 'src/app/core/services/session.service';
+import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Component({
   selector: 'app-theme-card',
@@ -6,10 +9,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./theme-card.component.scss']
 })
 export class ThemeCardComponent implements OnInit {
-
-  constructor() { }
-
+  
+  @Input() theme!: Theme
+  @Input() mode!: boolean
+  
+  constructor(private themeService: ThemeService, private sessionService: SessionService) { }
+  
   ngOnInit(): void {
+    
   }
-
+  
+  action() {
+    if(this.mode) {
+      this.themeService.subscribe(this.theme.id, this.sessionService.getUserId()).subscribe({
+        complete: () => alert('Subscribe successful'),
+        error: () => alert('Subscribe error')
+      })
+    } else {
+      this.themeService.unsubscribe(this.theme.id, this.sessionService.getUserId()).subscribe({
+        complete: () => alert('Unsubscribe successful'),
+        error: () => alert('Unsubscribe error')
+      })
+    }
+      
+  }
 }

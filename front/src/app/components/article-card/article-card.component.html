@@ -1,8 +1,8 @@
-<div id="card">
-    <h3>Titre de l'article</h3>
+<div (click)="showDetails()" id="card">
+    <h3>{{ article.title }}</h3>
     <div class="d-flex flex-row">
-        <p class="w-50">Date:</p>
-        <p class="w-50">Auteur:</p>
+        <p class="w-50">Date: {{ article.createdAt }}</p>
+        <p class="w-50">Auteur: {{ article.author }}</p>
     </div>
-    <p id="content" class="text-break">yhgvyuhvgbyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuyhjuvghgvgbyhjubvgyhjubvgyhjubg</p>
+    <p id="content" class="text-break">{{ article.content }}</p>
 </div>

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Theme } from 'src/app/core/models/theme.model';
+import { ArticleService } from 'src/app/core/services/article.service';
+import { SessionService } from 'src/app/core/services/session.service';
+import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Component({
   selector: 'app-new-article',
@@ -8,16 +12,24 @@ import { Component, OnInit } from '@angular/core';
 export class NewArticleComponent implements OnInit {
   
   newArticleData = {
+    userId: this.sessionService.getUserId(),
     title: "",
     content: "",
-    themeId: ""
+    themeId: 0
   }
+
+  themes!: Theme[];
+
+  constructor(private articleService: ArticleService, private themeService: ThemeService, private sessionService: SessionService) {}
   
   ngOnInit(): void {
-    
+    this.themeService.getAllThemes().subscribe({
+      next: (themes: Theme[]) => this.themes = themes,
+      error: () => alert('Get theme error')
+    })
   }
   
   submitForm() {
-
+    this.articleService.createArticle(this.newArticleData)
   }
 }
