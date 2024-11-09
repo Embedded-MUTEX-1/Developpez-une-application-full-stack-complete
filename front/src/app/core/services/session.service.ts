@@ -32,4 +32,12 @@ export class SessionService {
   getToken() {
     return this.token;
   }
+
+  deleteSession() {
+    localStorage.removeItem('token');
+    this.token = null;
+
+    localStorage.removeItem('userId')
+    this.userId = 0;
+  }
 }

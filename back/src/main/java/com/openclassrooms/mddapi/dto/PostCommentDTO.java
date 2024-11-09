@@ -1,6 +1,8 @@
 package com.openclassrooms.mddapi.dto;
 
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostCommentDTO {
-    private Long userId; // TODO use security context
-
+    @NotNull
+    private Long userId;
+    @NotNull
+    private Long articleId;
+    @Size(min = 1, max = 255)
     private String comment;
 }

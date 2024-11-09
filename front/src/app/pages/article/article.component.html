@@ -1,13 +1,13 @@
 <app-nav-header></app-nav-header>
 <div class="v-100 mt-2 px-3">
     <div class="d-flex flex-row gap-3 mb-2">
-        <a routerLink="article" class="align-self-center"><img src="assets/arrow.png" alt="Back button"></a>
+        <a routerLink="/articles" class="align-self-center"><img src="assets/arrow.png" alt="Back button"></a>
         <h1 class="m-0">{{ articleDetails.title }}</h1>
     </div>
 
     <div id="detail" class="m-auto h-100">
         <div class="d-flex flex-wrap my-2">
-            <p class="article-detail">Date: {{ articleDetails.createdAt }}</p>
+            <p class="article-detail">Date: {{ articleDetails.createdAt | date:'dd/MM/yyyy' }}</p>
             <p class="article-detail">Auteur: {{ articleDetails.author }}</p>
             <p class="article-detail">Thème: {{ articleDetails.theme }}</p>
         </div>
@@ -23,12 +23,12 @@
         </div>
 
         <form #commentForm="ngForm" (ngSubmit)="submitComment()" class="d-flex flex-column gap-2 position-relative">
-            <label for="email">Comment</label>
-            <textarea class="form-control" id="email" name="email" [(ngModel)]="commentData.comment" required></textarea>
+            <label for="comment">Comment</label>
+            <textarea class="form-control" id="comment" name="comment" [(ngModel)]="commentData.comment" required></textarea>
             <div *ngIf="commentForm.touched && commentForm.invalid" class="text-danger">
                 Champ invalide.
             </div>
-            <button type="submit" class="btn align-self-center"><img src="assets/send.png" alt="Post comment button"></button>
+            <button type="submit" class="btn align-self-center" [disabled]="commentForm.invalid"><img src="assets/send.png" alt="Post comment button"></button>
         </form>
     </div>
 </div>

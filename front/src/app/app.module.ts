@@ -18,17 +18,23 @@ import { ArticleComponent } from './pages/article/article.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { NewArticleComponent } from './pages/new-article/new-article.component';
 import { AccountComponent } from './pages/account/account.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent, NavHeaderComponent, HeaderComponent, RegisterComponent, ArticlesComponent, ArticleCardComponent, ThemesComponent, ThemeCardComponent, ArticleComponent, CommentComponent, NewArticleComponent, AccountComponent],
+  declarations: [AppComponent, HomeComponent, LoginComponent, NavHeaderComponent, HeaderComponent, RegisterComponent, ArticlesComponent, ArticleCardComponent, ThemesComponent, ThemeCardComponent, ArticleComponent, CommentComponent, NewArticleComponent, AccountComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -2,18 +2,16 @@ package com.openclassrooms.mddapi.controllers;
 
 import com.openclassrooms.mddapi.dto.HttpMessageDTO;
 import com.openclassrooms.mddapi.dto.ThemeDTO;
+import com.openclassrooms.mddapi.exceptions.UserAlreadySubscribedException;
 import com.openclassrooms.mddapi.services.ThemeService;
 import com.openclassrooms.mddapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/themes")
 public class ThemeController {
 
@@ -29,15 +27,15 @@ public class ThemeController {
         return themeService.getThemes();
     }
 
-    @PatchMapping("/api/theme/{id}/subscribe/{userId}")
-    public HttpMessageDTO subscribeTheme(@PathVariable Long id, @PathVariable Long userId) {
-        themeService.subscribe(id, userId);
+    @PatchMapping("/{id}/subscribe/{user}")
+    public HttpMessageDTO subscribeTheme(@PathVariable Long id, @PathVariable Long user) throws UserAlreadySubscribedException {
+        themeService.subscribe(id, user);
         return new HttpMessageDTO("Subscribe successfully");
     }
 
-    @PatchMapping("/api/theme/{id}/unsubscribe/{userId}")
-    public HttpMessageDTO unsubscribeTheme(@PathVariable Long id, @PathVariable Long userId) {
-        themeService.unsubscribe(id, userId);
+    @PatchMapping("/{id}/unsubscribe/{user}")
+    public HttpMessageDTO unsubscribeTheme(@PathVariable Long id, @PathVariable Long user) {
+        themeService.unsubscribe(id, user);
         return new HttpMessageDTO("Unsubscribe successfully");
     }
 }

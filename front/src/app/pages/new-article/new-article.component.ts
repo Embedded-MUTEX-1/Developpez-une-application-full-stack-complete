@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Theme } from 'src/app/core/models/theme.model';
 import { ArticleService } from 'src/app/core/services/article.service';
 import { SessionService } from 'src/app/core/services/session.service';
@@ -20,7 +21,7 @@ export class NewArticleComponent implements OnInit {
 
   themes!: Theme[];
 
-  constructor(private articleService: ArticleService, private themeService: ThemeService, private sessionService: SessionService) {}
+  constructor(private articleService: ArticleService, private themeService: ThemeService, private sessionService: SessionService, private router: Router) {}
   
   ngOnInit(): void {
     this.themeService.getAllThemes().subscribe({
@@ -30,6 +31,12 @@ export class NewArticleComponent implements OnInit {
   }
   
   submitForm() {
-    this.articleService.createArticle(this.newArticleData)
+    this.articleService.createArticle(this.newArticleData).subscribe({
+      complete: () => {
+        alert("Article created")
+        this.router.navigateByUrl("/articles")
+      },
+      error: () => alert('Create article error')
+    })
   }
 }

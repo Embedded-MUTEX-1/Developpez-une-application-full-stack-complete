@@ -21,14 +21,17 @@ export class ThemeCardComponent implements OnInit {
   
   action() {
     if(this.mode) {
+      this.themeService.unsubscribe(this.theme.id, this.sessionService.getUserId()).subscribe({
+        complete: () => {
+          alert('Unsubscribe successful')
+          window.location.reload();
+        },
+        error: () => alert('Unsubscribe error')
+      })
+    } else {
       this.themeService.subscribe(this.theme.id, this.sessionService.getUserId()).subscribe({
         complete: () => alert('Subscribe successful'),
         error: () => alert('Subscribe error')
-      })
-    } else {
-      this.themeService.unsubscribe(this.theme.id, this.sessionService.getUserId()).subscribe({
-        complete: () => alert('Unsubscribe successful'),
-        error: () => alert('Unsubscribe error')
       })
     }
       

@@ -1,6 +1,7 @@
 package com.openclassrooms.mddapi.services;
 
 import com.openclassrooms.mddapi.dto.ThemeDTO;
+import com.openclassrooms.mddapi.exceptions.UserAlreadySubscribedException;
 import com.openclassrooms.mddapi.models.Theme;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.repositories.ThemeRepository;
@@ -28,9 +29,12 @@ public class ThemeServiceImpl implements ThemeService {
     }
 
     @Override
-    public void subscribe(Long themeId, Long userId) {
+    public void subscribe(Long themeId, Long userId) throws UserAlreadySubscribedException {
         User user = userRepository.findById(userId).orElseThrow();
         Theme theme = themeRepository.findById(themeId).orElseThrow();
+
+        if(user.getThemes().contains(theme))
+            throw new UserAlreadySubscribedException();
 
         user.getThemes().add(theme);
 

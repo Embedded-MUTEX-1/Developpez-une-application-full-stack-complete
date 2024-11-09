@@ -16,7 +16,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   register(newUser: Register) {
-    return this.http.post<HttpMessage>(this.userPath, newUser);
+    return this.http.post<HttpMessage>(`${this.userPath}/register`, newUser);
   }
 
   getMe(userId: number) {

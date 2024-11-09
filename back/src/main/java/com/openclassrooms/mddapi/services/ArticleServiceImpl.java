@@ -11,6 +11,7 @@ import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.repositories.ArticleRepository;
 import com.openclassrooms.mddapi.repositories.ThemeRepository;
 import com.openclassrooms.mddapi.repositories.UserRepository;
+import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.modelmapper.TypeToken;
@@ -39,11 +40,13 @@ public class ArticleServiceImpl implements ArticleService {
         TypeMap<Comment, CommentDTO> typeMapComment = this.modelMapper.createTypeMap(Comment.class, CommentDTO.class);
 
 
-        typeMapArticle.addMappings(mapper -> mapper.map(src -> src.getUser().getUsername(), ArticleDTO::setAuthor));
-        typeMapArticleDetails.addMappings(mapper -> mapper.map(src -> src.getUser().getUsername(), ArticleDetailsDTO::setAuthor));
+        typeMapArticle.addMappings(mapper -> mapper.map(src -> src.getUser().getName(), ArticleDTO::setAuthor));
+        typeMapArticleDetails.addMappings(mapper -> mapper.map(src -> src.getUser().getName(), ArticleDetailsDTO::setAuthor));
         typeMapArticleDetails.addMappings(mapper -> mapper.map(src -> src.getTheme().getName(), ArticleDetailsDTO::setTheme));
+        typeMapArticleDetails.addMappings(mapper -> mapper.map(Article::getComments, ArticleDetailsDTO::setComments));
 
-        typeMapComment.addMappings(mapper -> mapper.map(src -> src.getUser().getUsername(), CommentDTO::setUsername));
+        typeMapComment.addMappings(mapper -> mapper.map(src -> src.getUser().getName(), CommentDTO::setName));
+        typeMapComment.addMappings(mapper -> mapper.map(Comment::getComment, CommentDTO::setComment));
     }
 
     @Override
@@ -54,6 +57,8 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleDetailsDTO getArticleById(Long id) {
         Article article = articleRepository.findById(id).orElseThrow();
+        Hibernate.initialize(article);
+        System.out.println(article.getComments());
         return modelMapper.map(article, ArticleDetailsDTO.class);
     }
 

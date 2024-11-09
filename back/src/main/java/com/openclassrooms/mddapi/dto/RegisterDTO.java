@@ -1,5 +1,7 @@
 package com.openclassrooms.mddapi.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterDTO {
+    @Email
     private String email;
-    private String username;
+    @Size(min = 6, max = 20)
+    private String name;
+    @Size(min = 6, max = 20)
     private String password;
 }

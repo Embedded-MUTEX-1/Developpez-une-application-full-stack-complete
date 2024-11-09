@@ -3,9 +3,6 @@ package com.openclassrooms.mddapi.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-
-import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -16,7 +13,7 @@ public class UserDTO {
 
     private String email;
 
-    private String username;
+    private String name;
 
     private String password;
 

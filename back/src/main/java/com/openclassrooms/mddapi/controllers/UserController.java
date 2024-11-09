@@ -6,13 +6,13 @@ import com.openclassrooms.mddapi.dto.UpdateUserDTO;
 import com.openclassrooms.mddapi.dto.UserDTO;
 import com.openclassrooms.mddapi.exceptions.EntityAlreadyExistsException;
 import com.openclassrooms.mddapi.services.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityNotFoundException;
 
-@Controller
+@RestController
 @RequestMapping("/api/users")
 public class UserController {
 

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ArticleDetails } from 'src/app/core/models/article-details.model';
 import { ArticleService } from 'src/app/core/services/article.service';
 import { CommentService } from 'src/app/core/services/comment.service';
+import { SessionService } from 'src/app/core/services/session.service';
 
 @Component({
   selector: 'app-article',
@@ -13,6 +14,7 @@ export class ArticleComponent implements OnInit {
 
   commentData = {
     userId: 0,
+    articleId: 0,
     comment: ""
   }
 
@@ -21,7 +23,8 @@ export class ArticleComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private commentService: CommentService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private sessionService: SessionService
   ) {}
   
   ngOnInit(): void {
@@ -29,7 +32,16 @@ export class ArticleComponent implements OnInit {
   }
   
   submitComment() {
-    this.commentService.addComment(this.commentData)
+    this.commentData.articleId = this.articleDetails.id;
+    this.commentData.userId = this.sessionService.getUserId();
+
+    this.commentService.addComment(this.commentData).subscribe({
+      complete: () => { 
+        alert("Comment added");
+        this.retreiveArticle();
+      },
+      error: () => alert("Add comment Error")
+    })
   }
 
   retreiveArticle() {

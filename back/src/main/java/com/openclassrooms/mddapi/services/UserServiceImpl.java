@@ -9,17 +9,20 @@ import com.openclassrooms.mddapi.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private ModelMapper modelMapper;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.modelMapper = new ModelMapper();
+        this.passwordEncoder = passwordEncoder;
         TypeMap<User, UserDTO> typeMap = this.modelMapper.createTypeMap(User.class, UserDTO.class);
         typeMap.addMappings(mapper -> mapper.map(User::getThemes, UserDTO::setThemes));
     }
@@ -28,6 +31,8 @@ public class UserServiceImpl implements UserService {
     public void registerUser(RegisterDTO registerDTO) throws EntityAlreadyExistsException {
         if (userRepository.existsByEmail(registerDTO.getEmail()))
             throw new EntityAlreadyExistsException();
+
+        registerDTO.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
 
         userRepository.save(modelMapper.map(registerDTO, User.class));
     }
@@ -42,9 +47,13 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(update.getId()).orElseThrow();
 
         user.setEmail(update.getEmail());
-        user.setUsername(update.getUsername());
-        user.setPassword(update.getPassword());
+        user.setName(update.getName());
 
         userRepository.save(user);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

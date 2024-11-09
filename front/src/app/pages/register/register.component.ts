@@ -10,7 +10,7 @@ import { UserService } from 'src/app/core/services/user.service';
 export class RegisterComponent implements OnInit {
   registerData = {
     email: "",
-    username: "",
+    name: "",
     password: ""
   };
 

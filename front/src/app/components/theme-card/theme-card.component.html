@@ -1,7 +1,9 @@
 <div id="card">
     <h3>{{ theme.name }}</h3>
     
+    <p id="content" class="text-break">{{ theme.description }}</p>
+
     <div class="text-center">
-        <button (click)="action()" class="btn align-self-center">S'abonner</button>
+        <button (click)="action()" class="btn align-self-center">{{ mode ? 'Se désabonner' : "S'abonner" }}</button>
     </div>
 </div>

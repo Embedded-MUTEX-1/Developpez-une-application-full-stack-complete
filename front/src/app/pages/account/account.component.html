@@ -1,12 +1,12 @@
 <app-nav-header></app-nav-header>
 <div class="vh-100">
-    <h2 class="text-center">Créer un article</h2>
+    <h2 class="text-center">Profil utilisateur</h2>
 
-    <form #loginForm="ngForm" (ngSubmit)="submitForm()" class="d-flex flex-column gap-4">
+    <form #UpdateForm="ngForm" (ngSubmit)="submitForm()" class="d-flex flex-column gap-4">
         <div class="form-group d-flex flex-column align-items-center">
-            <label for="username">Nom d'utilisateur</label>
-            <input type="text" class="form-control" id="username" name="username" [(ngModel)]="userData.username" minlength="5" required>
-            <div *ngIf="loginForm.touched && loginForm.invalid" class="text-danger">
+            <label for="name">Nom d'utilisateur</label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="userData.name" minlength="5" required>
+            <div *ngIf="UpdateForm.touched && UpdateForm.invalid" class="text-danger">
                 Champ invalide.
             </div>
         </div>
@@ -14,16 +14,16 @@
         <div class="form-group d-flex flex-column align-items-center">
             <label for="email">Email</label>
             <input type="email" class="form-control" id="email" name="email" [(ngModel)]="userData.email" required>
-            <div *ngIf="loginForm.touched && loginForm.invalid" class="text-danger">
+            <div *ngIf="UpdateForm.touched && UpdateForm.invalid" class="text-danger">
                 Champ invalide.
             </div>
         </div>
 
-        <button type="submit" class="btn align-self-center">Update</button>
+        <button type="submit" class="btn align-self-center" [disabled]="UpdateForm.invalid">Update</button>
     </form>
 
     <div class="d-flex flex-column align-items-center">
-        <button id="logout" class="btn">Se deconnecter</button>
+        <button (click)="logout()" id="logout" class="btn">Se deconnecter</button>
     </div>
 
     <div id="line" class="my-4"></div>
@@ -31,6 +31,6 @@
     <h2 class="mb-4 text-center">Abonnements</h2>
 
     <div class="row">
-        <app-theme-card *ngFor="let theme of themes" [theme]="theme" [mode]="false" class="col-12 col-sm-6"></app-theme-card>
+        <app-theme-card *ngFor="let theme of themes" [theme]="theme" [mode]="true" class="col-12 col-sm-6"></app-theme-card>
     </div>
 </div>

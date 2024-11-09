@@ -1,7 +1,7 @@
 <div (click)="showDetails()" id="card">
     <h3>{{ article.title }}</h3>
     <div class="d-flex flex-row">
-        <p class="w-50">Date: {{ article.createdAt }}</p>
+        <p class="w-50">Date: {{ article.createdAt | date:'dd/MM/yyyy' }}</p>
         <p class="w-50">Auteur: {{ article.author }}</p>
     </div>
     <p id="content" class="text-break">{{ article.content }}</p>
