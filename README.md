@@ -1,25 +1,16 @@
 # P6-Full-Stack-reseau-dev
 
-## Front
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
-
-Don't forget to install your node_modules before starting (`npm install`).
-
-### Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-### Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-### Where to start
-
-As you may have seen if you already started the app, a simple home page containing a logo, a title and a button is available. If you take a look at its code (in the `home.component.html`) you will see that an external UI library is already configured in the project.
-
-This library is `@angular/material`, it's one of the most famous in the angular ecosystem. As you can see on their docs (https://material.angular.io/), it contains a lot of highly customizable components that will help you design your interfaces quickly.
-
-Note: I recommend to use material however it's not mandatory, if you prefer you can get ride of it.
-
-Good luck!
+## Mise en place de la base de données
+- Sur le site de MySQL (https://www.mysql.com/fr/downloads/) téléchargez la dernière version du SGDB et procédez à l'installation.
+- Téléchargez et installez l'outil MySQL Workbench (https://dev.mysql.com/downloads/workbench/).
+- Après avoir configuré l'outil pour se connecter au SGBD, créez une base de données et un utilisateur avec les droits nécessaires au CRUD, et la manipulation des bases de données.
+- Pensez à noter les mots de passe, identifiants et url pour pouvoir les utiliser par la suite.
+## Mise en place du projet
+- Clonez le projet.
+- Avec vos IDEs préférés, ouvrez les dossier 'Front' et 'Back'.
+### Front
+- Entrer les commandes 'npm install' et 'ng s' sur terminal pour lancer un l'application disponible sous http://localhost:4200.
+### Back
+- Créez un fichier .env à l'aide du fichier .env.example en renseignant les informations de la BDD. Pour le champ JWT_KEY, vous pouvez générer une clé 256 via un générateur en ligne.
+- Sur votre IDE configurez le projet à fin de le rendre exécutable (certaines IDEs le font automatiquement). 
+- Enjoy!
