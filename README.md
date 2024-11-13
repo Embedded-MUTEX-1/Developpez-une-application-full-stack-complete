@@ -12,5 +12,6 @@
 - Entrer les commandes 'npm install' et 'ng s' sur terminal pour lancer un l'application disponible sous http://localhost:4200.
 ### Back
 - Créez un fichier .env à l'aide du fichier .env.example en renseignant les informations de la BDD. Pour le champ JWT_KEY, vous pouvez générer une clé 256 via un générateur en ligne.
-- Sur votre IDE configurez le projet à fin de le rendre exécutable (certaines IDEs le font automatiquement). 
+- Sur votre IDE configurez le projet à fin de le rendre exécutable (certaines IDEs le font automatiquement).
+- Javadoc : ` mvn javadoc:javadoc`
 - Enjoy!
