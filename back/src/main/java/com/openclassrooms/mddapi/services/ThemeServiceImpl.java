@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @hidden
+ */
 @Service
 public class ThemeServiceImpl implements ThemeService {
 

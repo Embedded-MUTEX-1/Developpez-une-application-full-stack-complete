@@ -84,6 +84,23 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.6.2</version>
+				<configuration>
+					<source>17</source>
+					<excludePackageNames>
+						com.openclassrooms.mddapi.dto;
+						com.openclassrooms.mddapi.config;
+						com.openclassrooms.mddapi.controllers;
+						com.openclassrooms.mddapi.models;
+						com.openclassrooms.mddapi.exceptions;
+						com.openclassrooms.mddapi.repositories;
+					</excludePackageNames>
+				</configuration>
+			</plugin>
+
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>

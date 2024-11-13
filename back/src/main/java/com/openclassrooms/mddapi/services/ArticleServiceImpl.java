@@ -21,6 +21,9 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @hidden
+ */
 @Service
 public class ArticleServiceImpl implements ArticleService {
     private UserRepository userRepository;
